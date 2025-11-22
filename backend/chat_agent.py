@@ -4,6 +4,7 @@ from backend.research_engine import research_company
 from backend.account_plan_engine import generate_account_plan
 
 from backend.agent_memory import remember, recall, append_memory, add_context
+from backend.plan_state import save_last_company   # <-- REQUIRED IMPORT
 
 
 def extract_company_name(message):
@@ -31,16 +32,16 @@ def handle_user_message(user_message):
         print("Detected research intent. Company:", company)
 
         remember("last_company", company)
+        save_last_company(company)
 
         data = research_company(company)
         raw = data["data"]
         conflicts = data["conflicts"]
 
-        # format list of text from pages
         text_list = list(raw.values())
         print("Scraped text:", text_list)
 
-        # if conflicts exist, notify user
+        # Conflict detection
         if conflicts:
             conflict_text = f"I found conflicting information about {company}:\n\n"
             for fact, versions in conflicts.items():
@@ -53,7 +54,7 @@ def handle_user_message(user_message):
             add_context("assistant", conflict_text)
             return conflict_text
 
-        # fallback if no data
+        # Summary fallback
         if not any(text_list):
             summary = f"No research data found for {company}."
         else:
@@ -76,6 +77,7 @@ def handle_user_message(user_message):
         print("Detected plan intent. Company:", company)
 
         remember("last_company", company)
+        save_last_company(company)
         append_memory("plan_sections_edited", "generated_plan")
 
         data = research_company(company)

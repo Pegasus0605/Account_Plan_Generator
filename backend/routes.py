@@ -6,6 +6,7 @@ from backend.plan_state import update_section, get_sections
 from backend.chat_agent import handle_user_message
 from backend.conflict_detector import detect_conflicts
 from backend.agent_memory import memory, clear_memory
+from backend.plan_state import update_section, get_sections, save_last_company, get_last_company
 
 # Debug
 print("ROUTES FILE LOADED")

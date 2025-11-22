@@ -1,0 +1,31 @@
+# Account Plan for {company}
+
+## 1. Executive Summary
+{executive_summary}
+
+## 2. Company Overview
+{company_overview}
+
+## 3. Products & Services
+{products_services}
+
+## 4. Business Model
+{business_model}
+
+## 5. Financial Highlights
+{financials}
+
+## 6. Competitors
+{competitors}
+
+## 7. Challenges
+{challenges}
+
+## 8. Opportunities
+{opportunities}
+
+## 9. Recommended GTM Strategy
+{gtm_strategy}
+
+## 10. Next Steps & Action Items
+{action_items}
